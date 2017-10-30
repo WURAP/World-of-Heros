@@ -1,9 +1,64 @@
 1) 
 Download this .zip-File: https://www.dropbox.com/sh/e1o3dz2pi2ter7t/AAADeKpno4XJAtm98mcJ1WE_a?dl=0
+
 2)
 Unpack this file in /home/h1234567/
-You get two directories, the first one is "eclipse-workspace" and the second one is "ProjektRP"
+You get one directory -> "ProjektRP"
+
 3)
-Start Eclipse & Run the Projekt superhero in the eclipse-workspace
+In the directory "ProjektRP" you find two *.zip-files, unpack this two in your "../home/h1234567/ " directory. 
+
 4)
-MORE COMES LATER...
+Open the Terminal and go to "/home/h1234567/ProjectRP/lensgenerator/.."
+
+5)
+Activate with this 3 codes the files:
+chmod 0777 generateObjects.sh
+chmod 0777 createProject.sh
+chmod 0777 generate_entities.sh
+
+6)
+Than we create the project:
+./createProject.sh -p superhero -t ~/eclipse-workspace
+(3 times you see "Build Success")
+
+7)
+Than we create the objects:
+./generateObjects.sh -p superhero -s ~/Einlesedaten/test.xml -t ~/eclipse-workspace
+(also 3 times you see "Success")
+
+8)
+Open Eclipse and the project "superhero" in the directory "eclipse-workspace"
+
+9)
+Please update all things that the program is asking for.
+
+10)
+In Eclipse go to:
+/superhero-web/src/main/resources/application.properties
+
+in the file you have to edit and save that:
+#3  db.connection.url=jdbc:postgresql://balrog:5432/h1387047
+#4  db.connection.user=h1234567
+#5  db.connection.password=1234
+#6  db.connection.schema=superhero
+#12  db.hibernate.auto=create
+
+in #3 usw your own matrikelnumber-link to balrog
+in #4 use your own matrikelnumber
+in #5 usw your own psql password
+
+SAVE THE FILE!
+
+11)
+Run WIldfly-Server on Servers in Eclipse
+
+12)
+Right-Click on /superhero-web/ on project explorer
+"Run As" -> "Run on Server"
+Than start this on Wildfly
+
+13)
+If all is ok, you can browse to:
+"localhost:8080/superhero"
+in Mozilla or an other browser on your system
