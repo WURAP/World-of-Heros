@@ -16,11 +16,11 @@ public class Interface extends Application {
 		final ImageView glassFrame = new ImageView();
 		
 		//background
-		final Image background = new Image(getClass().getResourceAsStream("maxresdefault.jpg"));
+		final Image background = new Image(getClass().getResourceAsStream("background.png"));
 		final ImageView backFrame = new ImageView();
 		backFrame.setImage(background);
-		backFrame.setFitHeight(720);
-		backFrame.setFitWidth(1080);
+		backFrame.setFitHeight(1200);
+		backFrame.setFitWidth(1920);
 		
 		//hero
 		final Image hero = new Image(getClass().getResourceAsStream("Superhero.png"));
@@ -37,17 +37,17 @@ public class Interface extends Application {
 		starview.setImage(star);
 		starview.setFitHeight(200);
 		starview.setFitWidth(200);
-		starview.setLayoutX(150);
-		starview.setLayoutY(100);
+		starview.setLayoutX(120);
+		starview.setLayoutY(200);
 		
 		//coin
 		final Image coin = new Image(getClass().getResourceAsStream("coin.png"));
 		final ImageView coinview = new ImageView();
 		coinview.setImage(coin);
-		coinview.setFitHeight(200);
+		coinview.setFitHeight(100);
 		coinview.setFitWidth(200);
-		coinview.setLayoutX(150);
-		coinview.setLayoutY(350);
+		coinview.setLayoutX(120);
+		coinview.setLayoutY(450);
 		
 		//buttons
 		final Button b1 = new Button("Statistik/History");
@@ -81,14 +81,14 @@ public class Interface extends Application {
 		
 		//Punkte
 		final Label l1 = new Label("Punkte");
-		l1.setLayoutX(215);
-		l1.setLayoutY(430);
+		l1.setLayoutX(180);
+		l1.setLayoutY(470);
 		l1.setFont(new Font("Arial", 25));
 		
 		//Level
 		final Label l2 = new Label("Level");
-		l2.setLayoutX(215);
-		l2.setLayoutY(185);
+		l2.setLayoutX(186);
+		l2.setLayoutY(285);
 		l2.setFont(new Font("Arial", 25));
 		
 		//Username
