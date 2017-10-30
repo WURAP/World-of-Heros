@@ -24,7 +24,7 @@ Than we create the project:
 
 7)
 Than we create the objects:
-./generateObjects.sh -p superhero -s ~/Einlesedaten/test.xml -t ~/eclipse-workspace
+./generateObjects.sh -p superhero -s ../Einlesedaten/test.xml -t ~/eclipse-workspace
 (also 3 times you see "Success")
 
 8)
@@ -33,7 +33,18 @@ Open Eclipse and the project "superhero" in the directory "eclipse-workspace"
 9)
 Please update all things that the program is asking for.
 
-10)
+10.1)
+Open pgAdmin III in Linux
+Login:
+Name: balrog
+Host: balrog.wu.ac.at
+Username: h1234567
++ Password
+Than say ok, search your Matrikelnumber...
+Create a new "Schema" with name "superhero"
+ready in this program
+
+10.2)
 In Eclipse go to:
 /superhero-web/src/main/resources/application.properties
 
