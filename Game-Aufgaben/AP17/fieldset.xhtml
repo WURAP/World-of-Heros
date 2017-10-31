@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<h:form>
+    <p:growl id="msgs" showDetail="true" />
+
+
+	<p:fieldset legend="Comparison" toggleable="true" toggleSpeed="500">
+        <p:ajax event="toggle" update="msgs" />
+        <h:panelGrid columns="2" cellpadding="5">
+			          <p:chart type="line" model="#{chartViewComparison.lineModel1}" style="height:300px;width:900px"/>
+
+	  </h:panelGrid>
+    </p:fieldset>
+    
+	<p:fieldset legend="Average Performance" toggleable="true" toggleSpeed="500" collapsed="true">
+        <p:ajax event="toggle" update="msgs" />
+        <h:panelGrid columns="2" cellpadding="5">
+			          <p:chart type="line" model="#{chartViewAverage.lineModel1}" style="height:300px;width:900px"/>
+
+	  </h:panelGrid>
+	</p:fieldset>
+    
+        <p:fieldset legend="Performance over Time" toggleable="true" toggleSpeed="500" collapsed="true">
+        <p:ajax event="toggle" update="msgs" />
+        <h:panelGrid columns="2" cellpadding="5">
+			          <p:chart type="line" model="#{chartViewPerformance.lineModel1}" style="height:300px;width:900px"/>
+
+	  </h:panelGrid>
+    </p:fieldset>
+    
+    
+    
+	</h:form>
+</h:body>
+</html>
