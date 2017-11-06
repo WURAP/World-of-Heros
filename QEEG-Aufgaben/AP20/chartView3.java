@@ -35,39 +35,63 @@ public class chartView3 implements Serializable {
  
     private BarChartModel initBarModel() {
         BarChartModel model = new BarChartModel();
+        
+        int i1=120;
+        int i2=100;
+        int i3=44;
+        int i4=150;
+        int i5=25;
+        
+        int i6=52;
+        int i7=60;
+        int i8=110;
+        int i9=135;
+        int i10=120;
+        
+        int i11=52;
+        int i12=60;
+        int i13=110;
+        int i14=135;
+        int i15=120;
+        
+        int avg1=(i1+i6+i11)/3;
+        int avg2=(i2+i7+i12)/3;
+        int avg3=(i3+i8+i13)/3;
+        int avg4=(i4+i9+i14)/3;
+        int avg5=(i5+i10+i15)/3;
  
         ChartSeries spiel1 = new ChartSeries();
         spiel1.setLabel("Buchstabenspiel");
-        spiel1.set("25.10.2017", 120);
-        spiel1.set("26.10.2017", 100);
-        spiel1.set("27.10.2017", 44);
-        spiel1.set("28.10.2017", 150);
-        spiel1.set("29.10.2017", 25);
+        spiel1.set("25.10.2017", i1);
+        spiel1.set("26.10.2017", i2);
+        spiel1.set("27.10.2017", i3);
+        spiel1.set("28.10.2017", i4);
+        spiel1.set("29.10.2017", i5);
  
         ChartSeries spiel2 = new ChartSeries();
         spiel2.setLabel("Textspiel");
-        spiel2.set("25.10.2017", 52);
-        spiel2.set("26.10.2017", 60);
-        spiel2.set("27.10.2017", 110);
-        spiel2.set("28.10.2017", 135);
-        spiel2.set("29.10.2017", 120);
+        spiel2.set("25.10.2017", i6);
+        spiel2.set("26.10.2017", i7);
+        spiel2.set("27.10.2017", i8);
+        spiel2.set("28.10.2017", i9);
+        spiel2.set("29.10.2017", i10);
  
         ChartSeries spiel3 = new ChartSeries();
         spiel3.setLabel("Super Hero");
-        spiel3.set("25.10.2017", 52);
-        spiel3.set("26.10.2017", 60);
-        spiel3.set("27.10.2017", 110);
-        spiel3.set("28.10.2017", 135);
-        spiel3.set("29.10.2017", 120);
+        spiel3.set("25.10.2017", i11);
+        spiel3.set("26.10.2017", i12);
+        spiel3.set("27.10.2017", i13);
+        spiel3.set("28.10.2017", i14);
+        spiel3.set("29.10.2017", i15);
         
         LineChartSeries average = new LineChartSeries();
         average.setLabel("Durchschnitt");
 
-        average.set("25.10.2017", 52);
-        average.set("26.10.2017", 60);
-        average.set("27.10.2017", 110);
-        average.set("28.10.2017", 135);
-        average.set("29.10.2017", 120);
+        average.set("25.10.2017", avg1);
+        average.set("26.10.2017", avg2);
+        average.set("27.10.2017", avg3);
+        average.set("28.10.2017", avg4);
+        average.set("29.10.2017", avg5);
         
         model.addSeries(spiel1);
         model.addSeries(spiel2);
