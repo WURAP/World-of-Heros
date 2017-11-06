@@ -1,0 +1,14 @@
+Tiger: Tier
+Affe : Tier
+Hund: Tier
+Katze: Tier
+Huhn: Tier
+Pizza: Essen
+Wurst: Essen
+Gemüse : Essen
+Obst: Essen
+Toast: Essen
+Frühling: Jahreszeit
+Sommer: Jahreszeit
+Herbst: Jahreszeit
+Winter: Jahreszeit
