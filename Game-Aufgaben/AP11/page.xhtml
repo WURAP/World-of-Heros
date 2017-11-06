@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+
+
+<h:body>
+<h:form>
+    <p:growl id="msgs" showDetail="true" />
+ 
+ <p:panel id="custom" header="Superhero Profil" style="margin-bottom:200px">
+        <h:panelGrid columns="2" cellpadding="10">
+
+                <h:outputText value="Dein Superheld:" />
+                <p:graphicImage name="/home/h1153044/SR/eclipse-workspace/Profil_Modul11/WebContent/images/superhero.png" />
+            </h:panelGrid>
+ 
+        <f:facet name="actions">
+            <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"><h:outputText styleClass="ui-icon ui-icon-help" /></h:commandLink>
+            <h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"><h:outputText styleClass="ui-icon ui-icon-star" /></h:commandLink>
+        </f:facet>
+       
+        <f:facet name="options">
+            <p:menu>
+                <p:submenu label="Optionen">
+                    <p:menuitem value="Verstecken" url="#" icon="ui-icon-newwin" onclick="PF('panel').toggle()" />
+                    <p:menuitem value="Löschen" url="#" icon="ui-icon-close" onclick="PF('panel').close()" />
+                    <p:menuitem value="Zeige/Verstecke Level" url="#" icon="ui-icon-close" onclick="PF('panel').close()" />
+                    <p:menuitem value="Zeige/Verstecke Punkte" url="#" icon="ui-icon-close" onclick="PF('panel').close()" />
+                    <p:menuitem value="Zeige/Verstecke Statistik" url="#" icon="ui-icon-close" onclick="PF('panel').close()" />
+                </p:submenu>
+            </p:menu>
+        </f:facet>
+ 
+<p:layout style="min-width:1000px;min-height:1000px;">
+    <p:layoutUnit position="center" resizable="true" size="800" minSize="150" maxSize="800">
+
+        <h3>Statistik</h3>
+<p:scrollPanel mode="native" style="width:250px;height:200px">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit tortor a ipsum vehicula, in semper sapien auctor. Nulla tempor eget est non consequat. Nulla sit amet lorem justo. Cras non tellus eros. Sed ultricies orci ut quam interdum fringilla. Nam vitae massa ac mi elementum mattis vel vitae sem. Ut eros ipsum, scelerisque a erat a, eleifend luctus nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+    </p>
+    <p>
+        Vivamus ac ullamcorper magna. Aenean felis ante, elementum sit amet urna at, eleifend aliquet velit. Morbi a convallis magna. In nec leo vel dolor hendrerit pharetra. Cras in iaculis enim. Aenean porta sapien dignissim turpis dapibus, eu dictum velit elementum. Aliquam sollicitudin gravida luctus.
+    </p>
+    <p>
+        Ut vel nulla sit amet erat laoreet eleifend nec sed lacus. Quisque placerat diam vitae justo eleifend, rutrum mollis mauris fringilla. Curabitur turpis odio, euismod id lorem a, ultricies suscipit ligula. Pellentesque ut erat a leo rhoncus porta ac sed velit. Nunc at erat ligula. Fusce vehicula posuere interdum. Curabitur tempus, tortor at sollicitudin dapibus, erat ante varius nisl, id dictum erat ipsum porttitor ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla id varius enim, sed rutrum orci.
+    </p>
+    <p>
+        Sed tincidunt urna quis metus lacinia commodo. Praesent convallis eros vel quam scelerisque bibendum. Mauris eget dignissim libero. Pellentesque sagittis sem quis ipsum viverra, sed consequat mi consectetur. Donec facilisis dapibus ultrices. Donec luctus auctor lacus, at congue nisi aliquet eu. Praesent in justo at risus faucibus ultricies. Fusce et libero lectus. Donec elementum pharetra sapien, at placerat purus sodales et. Vivamus iaculis lacus sed placerat rhoncus. Mauris iaculis sit amet nunc at placerat. Donec consequat euismod lacinia. Etiam nec quam vehicula, cursus massa in, ullamcorper erat.
+    </p>
+    <p>
+        Praesent volutpat scelerisque vestibulum. In eu massa non neque rutrum commodo. Nunc vel enim nisi. Aenean leo ipsum, molestie vel justo nec, pharetra luctus dui. Nunc rhoncus turpis id lorem luctus consequat. Nulla condimentum adipiscing turpis consequat semper. Etiam ullamcorper velit nec hendrerit malesuada. Praesent venenatis leo sit amet arcu commodo, sit amet porta tellus suscipit. Quisque mi tortor, vestibulum in arcu non, pretium auctor libero. In commodo luctus placerat.
+    </p>
+</p:scrollPanel>
+
+</p:layoutUnit>
+
+
+
+
+
+
+
+
+<p:button outcome="productDetail" value="Bookmark" icon="ui-icon-star">
+    <f:param name="productId" value="10" />
+</p:button>
+
+
+<p:button outcome="productDetail" value="Bookmark" icon="ui-icon-star">
+    <f:param name="productId" value="10" />
+</p:button>
+
+
+<p:button outcome="productDetail" value="Bookmark" icon="ui-icon-star">
+    <f:param name="productId" value="10" />
+</p:button>
+
+
+<p:button outcome="productDetail" value="Bookmark" icon="ui-icon-star">
+    <f:param name="productId" value="10" />
+</p:button>
+
+
+
+
+
+
+
+    </p:panel>
+
+</h:form>
+</h:body>
+</html>
