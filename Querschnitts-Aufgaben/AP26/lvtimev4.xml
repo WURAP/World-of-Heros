@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model mainReportdir="report" base="input">
+    <dims>
+        <dim type="attr" name="Figur">
+            <def>Dimension Figur</def>
+            <hiers>
+                <hier name="Figur">
+                    <def>OPEN</def>
+                    <lvlrol lname="Figur"/>
+                    <lvlrol lname="Figurinstanz"/>
+                </hier>
+            </hiers>
+            <lvls>
+                <lvl tag="Figurinstanz" name="Figurinstanz">
+                    <def>Die Spielfigur</def>
+                    <attrol aname="Geschlecht"/>
+                    <attrol aname="Kopf"/>
+                    <attrol aname="Hose"/>
+                    <attrol aname="T-shirt"/>
+                </lvl>
+                <lvl tag="Figur" name="Figur">
+                    <def>Generelle Eigenschaftn der Spielfigur</def>
+                    <attrol aname="Figur-ID"/>
+                    <attrol aname="Level"/>
+                </lvl>
+            </lvls>
+        </dim>
+        <dim type="attr" name="Spiel">
+            <def>Dimension Spiel</def>
+            <hiers>
+                <hier name="Spiel">
+                    <def>OPEN</def>
+                    <lvlrol lname="Spieltyp"/>
+                    <lvlrol lname="Spiel"/>
+                    <lvlrol lname="Spielstufe"/>
+                </hier>
+            </hiers>
+            <lvls>
+                <lvl tag="Spieltyp" name="Spieltyp">
+                    <def>OPEN</def>
+                </lvl>
+                <lvl tag="Spiel" name="Spiel">
+                    <def>Standardspiel, Buchsabenspiel, Zeichenspiel, Rechenspiel</def>
+                    <attrol aname="Spielname"/>
+                    <attrol aname="Spielnummer"/>
+                </lvl>
+                <lvl tag="Spielstufe" name="Spielstufe">
+                    <def>Schwierigkeitsgrad</def>
+                </lvl>
+            </lvls>
+        </dim>
+        <dim type="attr" name="Benutzer">
+            <def>Dimension Benutzer</def>
+            <hiers>
+                <hier name="Benutzer">
+                    <def>OPEN</def>
+                    <lvlrol lname="Benutzer"/>
+                    <lvlrol lname="Profil"/>
+                </hier>
+            </hiers>
+            <lvls>
+                <lvl tag="Profil" name="Profil">
+                    <def>Das Userprofil mir allen relevanen Daten</def>
+                    <attrol aname="Profil-ID"/>
+                    <attrol aname="ProfilName"/>
+                    <attrol aname="Erstellungsdatum"/>
+                    <attrol aname="Letzter Login"/>
+                    <attrol aname="Aktivierung"/>
+                    <attrol aname="Reset Token"/>
+                    <attrol aname="Secret Link"/>
+                </lvl>
+                <lvl tag="Benutzer" name="Benutzer">
+                    <def>Benutzerprofil. Kann Therapeut, Patient oder Elernteil sein.</def>
+                    <attrol aname="Email"/>
+                    <attrol aname="Vorname"/>
+                    <attrol aname="Nachname"/>
+                    <attrol aname="Adresse"/>
+                    <attrol aname="Benutzer-ID"/>
+                    <attrol aname="Passwort"/>
+                    <attrol aname="Sicherheitsfrage"/>
+                </lvl>
+            </lvls>
+        </dim>
+        <dim type="attr" name="Therapie">
+            <def>Dimension Therapie</def>
+            <hiers>
+                <hier name="Therapie">
+                    <def>OPEN</def>
+                    <lvlrol lname="Therapiegruppe"/>
+                    <lvlrol lname="Therapietyp"/>
+                    <lvlrol lname="Therapie"/>
+                    <lvlrol lname="Sitzung"/>
+                </hier>
+            </hiers>
+            <lvls>
+                <lvl tag="Therapiegruppe" name="Therapiegruppe">
+                    <def>Krankheitsbild</def>
+                    <attrol aname="Diagnoseschlüssel"/>
+                    <attrol aname="TherapiegruppeName"/>
+                </lvl>
+                <lvl tag="Therapietyp" name="Therapietyp">
+                    <def>Typ der Behandlung</def>
+                </lvl>
+                <lvl tag="Therapie" name="Therapie">
+                    <def>OPEN</def>
+                    <attrol aname="Therapie-ID"/>
+                    <attrol aname="Therapiename"/>
+                </lvl>
+                <lvl tag="Sitzung" name="Sitzung">
+                    <def>Eine Therapie besteht aus mehreren Sitzungen in der mehrere Spiele gespielt werden können.</def>
+                    <attrol aname="Sitzungsnummer"/>
+                    <attrol aname="Sitzungsname"/>
+                </lvl>
+            </lvls>
+        </dim>
+    </dims>
+    <bases>
+        <base tag="Punktestand" name="Punktestand" def="OPEN">
+            <anchors>
+                <anchor name="Spiel" lvl="Spiel" dim="Spiel"/>
+                <anchor name="Profil" lvl="Profil" dim="Benutzer"/>
+            </anchors>
+            <measures/>
+            <brols>
+                <brol bname="Punktestand"/>
+            </brols>
+        </base>
+        <base tag="PerformanceScore" name="Performance Score" def="OPEN">
+            <anchors>
+                <anchor name="Profil" lvl="Profil" dim="Benutzer"/>
+                <anchor name="Sitzung" lvl="Sitzung" dim="Therapie"/>
+                <anchor name="Spielstufe" lvl="Spielstufe" dim="Spiel"/>
+            </anchors>
+            <measures/>
+            <brols>
+                <brol bname="Performance Score"/>
+            </brols>
+        </base>
+    </bases>
+    <atts>
+        <att type="char" name="ProfilName" length="200"/>
+        <att type="char" name="TherapiegruppeName" length="200"/>
+        <att type="char" requestby="OPEN" precision="0" name="Profil-ID" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Profilname" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Erstellungsdatum" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Letzter Login" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Aktivierung" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Reset Token" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Secret Link" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" name="BenutzerName" length="200"/>
+        <att type="char" requestby="OPEN" precision="0" name="Email" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Password" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Vorname" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Nachname" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Adresse" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Figur-ID" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Ausstattung" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Level" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Geschlecht" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Kopf" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Rumpf" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Beine" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Spielname" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Spielnummer" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Therapie-ID" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Therapiename" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Diagnoseschlüssel" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Therapiegruppename" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Sitzungsnummer" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Sitzungsname" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="numeric" requestby="OPEN" precision="0" name="Punktestand" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Hose" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="T-shirt" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Benutzer-ID" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Passwort" length="0">
+            <def>OPEN</def>
+        </att>
+        <att type="char" requestby="OPEN" precision="0" name="Sicherheitsfrage" length="0">
+            <def>OPEN</def>
+        </att>
+    </atts>
+    <database user="h1026568" schematype="lens" schema="public" prefix="postgresql" port="" passwd="h1026568" nrpr="1" name="postgres" init="" host="balrog.wu.ac.at" driver="org.postgresql.Driver" decSep="Dot" dbname="h1026568" copy="false"/>
+</model>
