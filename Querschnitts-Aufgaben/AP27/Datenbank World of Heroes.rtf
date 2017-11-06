@@ -1,0 +1,293 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh7900\viewkind0
+\deftab708
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab708\ri-386\partightenfactor0
+
+\f0\fs12 \cf0 CREATE TABLE Benutzertyp (\
+Email VARCHAR(30) NOT NULL, \
+Vorname VARCHAR(30) NOT NULL, \
+Nachname VARCHAR(30), \
+Adresse VARCHAR(60),\
+Typ VARCHAR(20), \
+PRIMARY KEY (Email)\
+);\
+\
+CREATE TABLE Profil (\
+Profil_ID INTEGER NOT NULL,\
+Profilname VARCHAR(30),\
+Erstellungsdatum VARCHAR(10) NOT NULL,\
+Letzter_Login VARCHAR(10) NOT NULL,\
+Aktivierung VARCHAR(4) NOT NULL,\
+Reset_Token VARCHAR(4) NOT NULL,\
+Secret_Link VARCHAR(60) NOT NULL,\
+Sicherheitsfrage VARCHAR(30) NOT NULL,\
+Passwort VARCHAR(15) NOT NULL,\
+Email VARCHAR(60) NOT NULL, \
+PRIMARY KEY (Profilname)\
+);\
+\
+CREATE TABLE FIGUR (\
+Figur_ID INTEGER NOT NULL,\
+Levelnummer INTEGER NOT NULL,\
+PRIMARY KEY (Figur_ID)\
+);\
+\
+CREATE TABLE FIGURINSTANZ (\
+Figurinstanz_ID INTEGER NOT NULL, \
+Geschlecht VARCHAR(30) NOT NULL,\
+Kopf VARCHAR(60) NOT NULL,\
+Rumpf VARCHAR(60) NOT NULL,\
+Beine VARCHAR(60) NOT NULL,\
+Levelnummer INTEGER NOT NULL,\
+Accessoire VARCHAR(60) NOT NULL,\
+Figur_ID INTEGER NOT NULL,\
+PRIMARY KEY (Figurinstanz_ID)\
+);\
+\
+CREATE TABLE SPIELTYP (\
+Spieltyp_ID INTEGER NOT NULL,\
+Spieltyp_Name VARCHAR(60) NOT NULL,\
+PRIMARY KEY (Spieltyp_ID)\
+);\
+\
+CREATE TABLE Spiel (\
+Spiel_ID INTEGER NOT NULL,\
+Spieltyp_ID INTEGER NOT NULL,\
+PRIMARY KEY (Spiel_ID)\
+);\
+\
+CREATE TABLE Spielstufe (\
+Level_ID VARCHAR(9) NOT NULL,\
+Levelnummer VARCHAR(20) NOT NULL,\
+Spiel_ID INTEGER NOT NULL,\
+PRIMARY KEY (Level_ID)\uc0\u8232 );\
+\
+CREATE TABLE Therapiegruppe (\
+Therapiegruppenname VARCHAR(60) NOT NULL,\
+Patient_Name VARCHAR(60) NOT NULL,\
+Therapeut_Name VARCHAR(60) NOT NULL,\
+PRIMARY KEY (Therapiegruppenname)\uc0\u8232 );\
+\
+CREATE TABLE Therapietyp (\
+Therapietyp_ID INTEGER NOT NULL, \
+Therapietypbezeichnung VARCHAR(40) NOT NULL, \
+Therapiegruppenname VARCHAR(60) NOT NULL,\
+PRIMARY KEY (Therapietyp_ID) \
+);\
+\
+CREATE TABLE Therapie (\
+Therapie_ID INTEGER NOT NULL,\
+Therapietyp_ID INTEGER NOT NULL,\
+PRIMARY KEY (Therapie_ID)\
+);\
+\
+CREATE TABLE Sitzung (\
+Sitzungsteilnehmer VARCHAR(40) NOT NULL,\
+Sitzungsdatum VARCHAR(40) NOT NULL, \
+Therapie_ID INTEGER NOT NULL,\
+PRIMARY KEY (Sitzungsteilnehmer,Sitzungsdatum)\
+);\
+\
+\
+CREATE TABLE Score ( \
+Wert INTEGER NOT NULL,\
+Sitzungsteilnehmer VARCHAR(40) NOT NULL,\
+Sitzungsdatum VARCHAR(40) NOT NULL, \
+Level_ID VARCHAR(9) NOT NULL,\
+Figurinstanz_ID INT NOT NULL,\
+FOREIGN KEY (Sitzungsteilnehmer,Sitzungsdatum) REFERENCES Sitzung(Sitzungsteilnehmer,Sitzungsdatum),\
+FOREIGN KEY (Level_ID) REFERENCES Spielstufe(Level_ID),\
+FOREIGN KEY (Figurinstanz_ID) REFERENCES Figurinstanz(Figurinstanz_ID),\
+PRIMARY KEY (Sitzungsteilnehmer,Sitzungsdatum,Level_ID,Figurinstanz_ID)\
+);\
+\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab708\ri-386\partightenfactor0
+
+\fs10 \cf0 ALTER TABLE Profil \
+ADD FOREIGN KEY (Email) REFERENCES Benutzertyp(Email);\
+\
+ALTER TABLE Figurinstanz \
+ADD FOREIGN KEY (Figur_ID) REFERENCES Figur(Figur_ID); \
+\
+ALTER TABLE Therapietyp\
+ADD FOREIGN KEY (Therapiegruppenname) REFERENCES Therapiegruppe(Therapiegruppenname);\
+\
+ALTER TABLE Therapie\
+ADD FOREIGN KEY (Therapietyp_ID) REFERENCES Therapietyp(Therapietyp_ID);\
+\
+ALTER TABLE Sitzung\
+ADD FOREIGN KEY (Therapie_ID) REFERENCES Therapie(Therapie_ID);\
+\
+ALTER TABLE Spiel\
+ADD FOREIGN KEY (Spieltyp_ID) REFERENCES Spieltyp(Spieltyp_ID);\
+\
+ALTER TABLE Spielstufe\
+ADD FOREIGN KEY (Spiel_ID) REFERENCES Spiel(Spiel_ID);\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab708\ri-386\partightenfactor0
+
+\fs14 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab708\ri-386\partightenfactor0
+
+\fs18 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab708\ri-386\partightenfactor0
+
+\fs12 \cf0 INSERT INTO BENUTZERTYP VALUES ('anna.bauer@live.at','Anna','Bauer','Bergweg 2', 'Patient');\
+INSERT INTO BENUTZERTYP VALUES ('maxiberger@gmx.at','Max','Berger','M\'fchlenweg 3', 'Patient');\
+INSERT INTO BENUTZERTYP VALUES ('maier.sylvia@gmx.at','Sylvia','Maier','Hausstra\'dfe 13','Elternteil');\
+INSERT INTO BENUTZERTYP VALUES ('marlene.hammerle@wienkav.at','Marlene','Hammerle','Musterweg 4','Therapeut');\
+INSERT INTO BENUTZERTYP VALUES ('paulhofer@hotmail.com','Paul','Hofer','Alpenstra\'dfe 52','Patient');\
+INSERT INTO BENUTZERTYP VALUES ('waltraud.heimer@gmx.at','Waltraud','Heimer','Traubenweg 1','Elternteil');\
+INSERT INTO BENUTZERTYP VALUES ('herbert_wimmer@chello.at','Herbert','Wimmer','Wasserweg 4','Therapeut');\
+INSERT INTO BENUTZERTYP VALUES ('maria.huber12@chello.at','Maria','Huber','M\'fchlgasse 2','Elternteil');\
+INSERT INTO BENUTZERTYP VALUES ('mayer.mia2003@gmx.at','Mia','Mayer','Hofweg 2','Patient');\
+INSERT INTO BENUTZERTYP VALUES ('20Hauer.luki05@live.at','Lukas','Hauer','Marktplatz 12','Patient');\
+INSERT INTO BENUTZERTYP VALUES ('bj\'f6rn.ericsson@live.at','Bj\'f6rn','Ericsson','Heimgasse 47','Elternteil');\
+INSERT INTO BENUTZERTYP VALUES ('hannah.m\'fcllern@live.de','Hannah','M\'fcller','Meisterplatz 1','Patient');\
+INSERT INTO BENUTZERTYP VALUES ('mtmayerh@gmail.com','Marie-Theres','Mayerhuber','Hauptallee 3','Patient');\
+INSERT INTO BENUTZERTYP VALUES ('markmoeller@outlook.de','Mark','M\'f6ller','Moosgasse 123','Therapeut');\
+INSERT INTO BENUTZERTYP VALUES ('aignerchristian@rocketmail.com','Christian','Aigner','Sonnenuhrgasse 1','Patient');\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab708\ri-386\partightenfactor0
+
+\fs18 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab708\ri-386\partightenfactor0
+
+\fs10 \cf0 INSERT INTO PROFIL VALUES (10000,'AnnaBauer01','10.11.2017','15.12.2017','Ja','Ja','xxxxx','yyyyy','rstrst','anna.bauer@live.at');\
+INSERT INTO PROFIL VALUES (10001,'MaxBerger01','11.11.2017','15.11.2017','Nein','Ja','xxxxx','yyyyy','mnomno''maxiberger@gmx.at');\
+INSERT INTO PROFIL VALUES (10002,'SylviaMaier01','12.11.2017','12.12.2017','Nein','Nein','xxxxx','yyyyy','jkljkl','maier.sylvia@gmx.at');\
+INSERT INTO PROFIL VALUES (10003,'MarleneHammerle01','12.11.2017','30.11.2017','Ja','Ja','xxxxx','yyyyy','xyzxvy','marlene.hammerle@wienkav.at');\
+INSERT INTO PROFIL VALUES (10004,'PaulHofer01','13.11.2017','15.12.2017','Nein','Ja','xxxxx','yyyyy','abcabc','paulhofer@hotmail.com');\
+INSERT INTO PROFIL VALUES (10005,'WaltraudHeimer01','14.11.2017','20.11.2017','Nein','Ja','xxxxx','yyyyy','defdef','waltraud.heimer@gmx.at');\
+INSERT INTO PROFIL VALUES (10006,'HannahM\'fcller01','15.11.2017','21.11.2017','Nein','Nein','xxxxx','yyyyy','lmnlmn','hannah.m\'fcllern@live.de');\
+INSERT INTO PROFIL VALUES (10007,'Bj\'f6rnEricsson01','15.11.2017','6.11.2017','Ja','Nein','xxxxx','yyyyy','uvwuvw','bj\'f6rn.ericsson@live.at');\
+INSERT INTO PROFIL VALUES (10008,'MarieTheresMayerhofer01','15.11.2017','8.11.2017','Ja','Ja','xxxxx','yyyyy','fghfgh','mtmayerh@gmail,com');\
+INSERT INTO PROFIL VALUES (10009,'MariaHuber01','16.11.2017','26.11.2017','Ja','Nein','xxxxx','yyyyy','fghfgh','maria.huber12@chello.at');\
+INSERT INTO PROFIL VALUES (10010,'MarkM\'f6ller01','16.11.2017','29.11.2017','Ja','Ja','xxxxx','yyyyy','opqopq','markmoeller@outlook.de');\
+INSERT INTO PROFIL VALUES (10011,'HerbertWimmer01','17.11.2017','19.11.2017','Nein','Ja','xxxxx','yyyyy','hijhij','herbert_wimmer@chello.at');\
+INSERT INTO PROFIL VALUES (10012,'ChristianAigner01','17.11.2017','27.11.2017','Ja','Ja','xxxxx','yyyyy','ijkijk','aignerchristian@rocketmail.com');\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab708\ri-386\partightenfactor0
+
+\fs12 \cf0 \
+INSERT INTO FIGUR VALUES (1111,2);\
+INSERT INTO FIGUR VALUES (1122,4);\
+INSERT INTO FIGUR VALUES (1133,6);\
+INSERT INTO FIGUR VALUES (1144,2);\
+INSERT INTO FIGUR VALUES (1155,1);\
+INSERT INTO FIGUR VALUES (1166,1);\
+INSERT INTO FIGUR VALUES (1177,6);\
+INSERT INTO FIGUR VALUES (1188,2);\
+INSERT INTO FIGUR VALUES (1199,3);\
+INSERT INTO FIGUR VALUES (1200,4);\
+\
+INSERT INTO FIGURINSTANZ VALUES (11110,'Geschlecht1_m\'e4nnlich','Haartyp1','Rumpftyp1','Beintyp1',2,'Socken',1111);\
+INSERT INTO FIGURINSTANZ VALUES (11220,'Geschlecht2_weiblich','Haartyp2','Rumpftyp2','Beintyp2',4,'Umhang',1122);\
+INSERT INTO FIGURINSTANZ VALUES (11330,'Geschlecht1_m\'e4nnlich','Haartyp1','Rumpftyp1','Beintyp1',6,'Diadem',1133);\
+INSERT INTO FIGURINSTANZ VALUES (11440,'Geschlecht2_weiblich','Haartyp2','Rumpftyp2','Beintyp2',2,'Strumpfhose',1144);\
+INSERT INTO FIGURINSTANZ VALUES (11550,'Geschlecht2_weiblich','Haartyp2','Rumpftyp2','Beintyp2',1,'Unterhose',1155);\
+INSERT INTO FIGURINSTANZ VALUES (11660,'Geschlecht1_m\'e4nnlich','Haartyp1','Rumpftyp1','Beintyp1',1,'Unterhose',1166);\
+INSERT INTO FIGURINSTANZ VALUES (11770,'Geschlecht1_m\'e4nnlich','Haartyp1','Rumpftyp1','Beintyp1',1,'Krone',1177);\
+INSERT INTO FIGURINSTANZ VALUES (11880,'Geschlecht2_weiblich','Haartyp2','Rumpftyp2','Beintyp1',2,'Socken',1188);\
+INSERT INTO FIGURINSTANZ VALUES (11990,'Geschlecht2_weiblich','Haartyp2','Rumpftyp2','Beintyp1',3,'Strumpfhose',1199);\
+INSERT INTO FIGURINSTANZ VALUES (12000,'Geschlecht1_m\'e4nnlich','Haartyp1','Rumpftyp1','Beintyp1',4,'Umhang',1200);\
+\
+\
+INSERT INTO SPIELTYP VALUES (1011,'Flugspiel');\
+INSERT INTO SPIELTYP VALUES (1021,'Rechenspiel');\
+INSERT INTO SPIELTYP VALUES (1031,'Buchstabenspiel');\
+INSERT INTO SPIELTYP VALUES (1012,'Flugspiel');\
+INSERT INTO SPIELTYP VALUES (1022,'Rechenspiel');\
+INSERT INTO SPIELTYP VALUES (1023,'Rechenspiel');\
+INSERT INTO SPIELTYP VALUES (1032,'Buchstabenspiel');\
+INSERT INTO SPIELTYP VALUES (1013,'Flugspiel');\
+INSERT INTO SPIELTYP VALUES (1014,'Flugspiel');\
+INSERT INTO SPIELTYP VALUES (1033,'Buchstabenspiel');\
+INSERT INTO SPIELTYP VALUES (1024,'Rechenspiel');\
+INSERT INTO SPIELTYP VALUES (1034,'Buchstabenspiel');\
+\
+INSERT INTO SPIEL VALUES (10111,1011);\
+INSERT INTO SPIEL VALUES (10112,1011);\
+INSERT INTO SPIEL VALUES (10211,1021);\
+INSERT INTO SPIEL VALUES (10311,1031);\
+INSERT INTO SPIEL VALUES (10312,1031);\
+INSERT INTO SPIEL VALUES (10121,1012);\
+INSERT INTO SPIEL VALUES (10122,1012);\
+INSERT INTO SPIEL VALUES (10231,1023);\
+INSERT INTO SPIEL VALUES (10321,1032);\
+INSERT INTO SPIEL VALUES (10131,1013);\
+INSERT INTO SPIEL VALUES (10132,1013);\
+INSERT INTO SPIEL VALUES (10331,1033);\
+INSERT INTO SPIEL VALUES (10241,1024);\
+\
+INSERT INTO SPIELSTUFE VALUES ('AAX1223Y1',2,10111);\
+INSERT INTO SPIELSTUFE VALUES ('DFA232141',4,10211);\
+INSERT INTO SPIELSTUFE VALUES ('GJH212391',6,10311);\
+INSERT INTO SPIELSTUFE VALUES ('HDD892131',3,10312);\
+INSERT INTO SPIELSTUFE VALUES ('AAX1223Y2',2,10111);\
+INSERT INTO SPIELSTUFE VALUES ('XY782DGA1',5,10122);\
+INSERT INTO SPIELSTUFE VALUES ('FDSF321S1',1,10231);\
+INSERT INTO SPIELSTUFE VALUES ('GFDGS12W1',4,10131);\
+INSERT INTO SPIELSTUFE VALUES ('DSAW193G1',3,10331);\
+INSERT INTO SPIELSTUFE VALUES ('DSAW193G2',3,10331);\
+INSERT INTO SPIELSTUFE VALUES ('TSAS34GT1',1,10241);\
+INSERT INTO SPIELSTUFE VALUES ('XSDS231F1',4,10132);\
+\
+\
+INSERT INTO THERAPIEGRUPPE VALUES ('AnnaBauer1','Anna Bauer','Marlene Hammerle');\
+INSERT INTO THERAPIEGRUPPE VALUES ('LukasHauer1','Lukas Hauer','Marlene Hammerle');\
+INSERT INTO THERAPIEGRUPPE VALUES ('PaulHofer1','Paul Hofer','Herbert Wimmer');\
+INSERT INTO THERAPIEGRUPPE VALUES ('MaxBerger1','Max Berger','Herbert Wimmer');\
+INSERT INTO THERAPIEGRUPPE VALUES ('MiaMayer1','Mia Mayer','Mark M\'f6ller');\
+INSERT INTO THERAPIEGRUPPE VALUES ('HannahM\'fcller1','Hannah M\'fcller','Mark M\'f6ller');\
+INSERT INTO THERAPIEGRUPPE VALUES ('MarieTheresMayerhofer1','Marie-Theres Mayerhofer','Marlene Hammerle');\
+INSERT INTO THERAPIEGRUPPE VALUES ('ChristianAigner1','Christian Aigner','Mark M\'f6ller');\
+\
+INSERT INTO THERAPIETYP VALUES (12345,'Erstbespechung','AnnaBauer1');\
+INSERT INTO THERAPIETYP VALUES (67891,'Nachbsprechung','LukasHauer1');\
+INSERT INTO THERAPIETYP VALUES (23456,'Zweite Untersuchung','PaulHofer1');\
+INSERT INTO THERAPIETYP VALUES (78912,'Erste Untersuchung','MaxBerger1');\
+INSERT INTO THERAPIETYP VALUES (34567,'Dritte Untersuchung','MiaMayer1');\
+INSERT INTO THERAPIETYP VALUES (89123,'Erstbesprechung','HannahM\'fcller1');\
+INSERT INTO THERAPIETYP VALUES (45678,'Erste Untersuchung','MarieTheresMayerhofer1');\
+INSERT INTO THERAPIETYP VALUES (91234,'Zweite Untersuchung','ChristianAigner1');\
+\
+\
+INSERT INTO THERAPIE VALUES (123451,12345);\
+INSERT INTO THERAPIE VALUES (123452,12345);\
+INSERT INTO THERAPIE VALUES (678911,67891);\
+INSERT INTO THERAPIE VALUES (234561,23456);\
+INSERT INTO THERAPIE VALUES (789121,78912);\
+INSERT INTO THERAPIE VALUES (345671,34567);\
+INSERT INTO THERAPIE VALUES (345672,34567);\
+INSERT INTO THERAPIE VALUES (891231,89123);\
+INSERT INTO THERAPIE VALUES (456781,45678);\
+INSERT INTO THERAPIE VALUES (912341,91234);\
+\
+INSERT INTO SITZUNG VALUES ('Anna Bauer','01.12.17',123451);\
+INSERT INTO SITZUNG VALUES ('Anna Bauer','11.12.17',123452);\
+INSERT INTO SITZUNG VALUES ('Lukas Hauer','02.12.17',678911);\
+INSERT INTO SITZUNG VALUES ('Paul Hofer','29.11.17',234561);\
+INSERT INTO SITZUNG VALUES ('Max Berger','03.12.17',789121);\
+INSERT INTO SITZUNG VALUES ('Mia Mayer','25.11.17',345671);\
+INSERT INTO SITZUNG VALUES ('Hannah M\'fcller','13.12.17',891231);\
+INSERT INTO SITZUNG VALUES ('Mia Mayer','12.12.17',345672);\
+INSERT INTO SITZUNG VALUES ('Marie-Theres Mayerhuber','17.12.17',456781);\
+INSERT INTO SITZUNG VALUES ('Christian Aigner','22.12.17',912341);\
+\
+\
+INSERT INTO SCORE VALUES (0,'Anna Bauer','01.12.17','FDSF321S1',11550);\
+INSERT INTO SCORE VALUES (12564,'Lukas Hauer','02.12.17','GJH212391',11330);\
+INSERT INTO SCORE VALUES (7893,'Paul Hofer','29.11.17','GJH212391',11330);\
+INSERT INTO SCORE VALUES (317,'Max Berger','03.12.17','AAX1223Y1',11660);\
+INSERT INTO SCORE VALUES (8916,'Mia Mayer','25.11.17','GFDGS12W1',11220);\
+INSERT INTO SCORE VALUES (0,'Hannah M\'fcller','13.12.17','TSAS34GT1',11770);\
+INSERT INTO SCORE VALUES (1203,'Marie-Theres Mayerhuber','17.12.17','HDD892131',11990);\
+INSERT INTO SCORE VALUES (8752,'Christian Aigner','22.12.17','XSDS231F1',12000);\
+}
