@@ -37,6 +37,33 @@ xmlns:p="http://primefaces.org/ui">
 <p:layout style="min-width:1000px;min-height:1000px;">
     <p:layoutUnit position="center" resizable="true" size="800" minSize="150" maxSize="800">
 
+        
+        
+          <p:dataList value="#{dataListView.cars2}" var="Level" type="definition">
+        <f:facet name="header">
+            Definition
+        </f:facet>
+        Brand: #{car.brand}, Year: #{car.year}
+        <f:facet name="description">
+            <p:graphicImage name="demo/images/car/#{car.brand}.gif"/> 
+        </f:facet>
+    </p:dataList>
+        
+        
+        
+          <p:dataList value="#{dataListView.cars2}" var="Punkte" type="definition">
+        <f:facet name="header">
+            Definition
+        </f:facet>
+        Brand: #{car.brand}, Year: #{car.year}
+        <f:facet name="description">
+            <p:graphicImage name="demo/images/car/#{car.brand}.gif"/> 
+        </f:facet>
+    </p:dataList>
+        
+        
+        
+        
         <h3>Statistik</h3>
 <h:form id="form">
     <p:dataList value="#{dataListView.cars1}" var="car" type="ordered">
@@ -62,14 +89,6 @@ xmlns:p="http://primefaces.org/ui">
 <p:button  value="Superheld Ändern" icon="ui-icon-star">
     <f:param name="productId" value="10" />
 </p:button>
-
-
-
-
-
-
-
-
 
 
     </p:panel>
