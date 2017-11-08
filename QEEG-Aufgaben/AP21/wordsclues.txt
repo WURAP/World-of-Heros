@@ -5,7 +5,7 @@ Katze: Tier
 Huhn: Tier
 Pizza: Essen
 Wurst: Essen
-Gemüse : Essen
+Nudeln : Essen
 Obst: Essen
 Toast: Essen
 Frühling: Jahreszeit
