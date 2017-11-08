@@ -11,8 +11,8 @@ import java.util.List;
 public class PuzzleBoard extends JPanel {
 
     private static final long serialVersionUID = -9139866544143252957L;
-    private final static int DELAY = 3500; // milliseconds
-    private final static int TILE_SIZE = 30; // pixels (includes border)
+    private final static int DELAY = 3500;
+    private final static int TILE_SIZE = 30;
     private final static String HINWEIS = "Hinweis ";
 
     private List<WordClue> wordsClues;
@@ -56,9 +56,6 @@ public class PuzzleBoard extends JPanel {
         // Identify the tile that was clicked.
         int tileID = mouseX/TILE_SIZE;
 
-        // If no tile has been selected, highlight this tile. Its associated
-        // character will be swapped with the character belonging to the next
-        // tile (which is not highlighted) to be selected.
         Timer timer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,7 +70,9 @@ public class PuzzleBoard extends JPanel {
         timer.setInitialDelay(0);
         timer.start();
 
-
+        // If no tile has been selected, highlight this tile. Its associated
+        // character will be swapped with the character belonging to the next
+        // tile (which is not highlighted) to be selected.
         if (!tileSelected)
         {
             tileSelected = true;
@@ -88,7 +87,7 @@ public class PuzzleBoard extends JPanel {
         scramWord = swapTwoElementsInArray(scramWord, selectedTileID, tileID);
         tileSelected = false;
 
-        // Display the swapped characters as soon as doSelect() and its
+        // Display the swapped characters as soon as doSelection() and its
         // mouseClicked() method caller exit.
         repaint ();
 
@@ -101,13 +100,14 @@ public class PuzzleBoard extends JPanel {
         // doSelect() and its mouseClicked() method caller exit.
         lblClue.setHorizontalTextPosition (JLabel.CENTER);
         lblClue.setText ("RICHTIG!");
+        timer.stop();
+        count = 0;
+        counter.setText(" ");
 
         // Activate the glass pane.
         pnlGlass.setVisible (true);
 
-        // Lazily create the action listener that takes us to the next scrambled
-        // word. The action listener is created only once to help minimize
-        // garbage collections.
+        // Create the action listener that takes us to the next scrambled word.
         if (al == null)
             al = new ActionListener ()
             {
@@ -198,49 +198,48 @@ public class PuzzleBoard extends JPanel {
 
     private char [] scramble (char [] word)
     {
-        //Creates a copy of the array word, automatically sets the appropriate size
+        // Create a copy of the array word, automatically sets the appropriate size.
         char [] scramWord = Arrays.copyOf(word, word.length);
 
-        //Boolean variables to detect when the while loop should abort
-        //Default initialization with true, so that the loop is executed at least once
+        // Boolean variables to determine when the while loop should abort.
+        // Default initialization with true, so that the loop is executed at least once.
         boolean checkWordLevelOfDifficultity = true;
 
         while (checkWordLevelOfDifficultity)
         {
-            //100 runs in which two elements in the array are randomly swapped
-            for (int i = 0; i < 100; i++) // 100 is arbitrary
+            // 100 runs in which two elements in the array are randomly swapped.
+            for (int i = 0; i < 100; i++)
             {
-                //Random index of the first element
+                // Random index of the first element.
                 int x = generateRandomNumber(word.length);
-                //Random index of the second element
+                // Random index of the second element.
                 int y = generateRandomNumber(word.length);
                 
-                //The method swaps the elements at the index positions x and y in the array and returns
-                //Return the array of swapped elements
+                // The method swaps the elements at the index positions x and y in the array and returns
+                // the array of swapped elements.
                 scramWord = swapTwoElementsInArray(scramWord, x, y);
             }
 
             // Make sure word is scrambled in the forward and reverse directions.
-            // For example, if word contains "JavaWorld", scramWord must not
-            // contain "JavaWorld" or "dlroWavaJ" (must make it harder to guess).
+            // For example, if word contains "Game", scramWord must not
+            // contain "Game" or "emaG".
             for (int i = 0; i < word.length; i++)
                 if (word [i] != scramWord [i] && word [i] != scramWord [word.length-1-i]){
-                    //If the elements do not match, the variable becomes
-                    //CheckWordLevelOfDifficultity set to false and the loop aborts
+                    // If the elements do not match, the variable CheckWordLevelOfDifficultity
+                    // is set to false and the loop aborts.
                     checkWordLevelOfDifficultity = false;
                 }
         }
 
-        //Returns the array with the swapped elements (mixed array)
+        // Returns the array with the swapped elements (mixed array).
         return scramWord;
     }
 
 
-    //Method gets the next word from the wordClues list
+    // Method gets the next word from the wordClues list.
     public void nextWord(int index){
 
-        // Prevent the same word from being chosen as the next
-        // word.
+        // Prevent the same word from being chosen as the next word.
         WordClue wc = wordsClues.get (index);
         word = wc.getWord();
         scramWord = scramble (word);
@@ -253,7 +252,7 @@ public class PuzzleBoard extends JPanel {
 
     }
 
-    //Method exchanges two elements in the array
+    // Method swaps two elements in the array.
     public char[] swapTwoElementsInArray(char[] array, int index1, int index2){
 
         char singleCharacter = array [index1];
