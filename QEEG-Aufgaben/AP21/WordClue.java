@@ -37,9 +37,9 @@ public class WordClue {
 
     public List<WordClue> readFromInputFile(String path){
         List<WordClue> wordClues = new ArrayList<>();
+        
         // Read the words and clues text file's contents into the wordsClues
         // ArrayList. The file must exist.
-
         InputStreamReader isr = null;
         BufferedReader br = null;
 
@@ -64,9 +64,9 @@ public class WordClue {
                 if (parts.length != 2)
                     break;
                 
-                //Constructor in which the instance variables word and clue are initialized directly
-                //1st parameter initialization of instance variable word
-                //2nd parameter initialization of instance variable clue
+                // Constructor in which the instance variables word and clue are initialized directly.
+                // 1st parameter initialization of instance variable word.
+                // 2nd parameter initialization of instance variable clue.
                 WordClue wc = new WordClue(parts [0].trim ().toCharArray (), parts [1].trim ());
                 wordClues.add (wc);
             }
