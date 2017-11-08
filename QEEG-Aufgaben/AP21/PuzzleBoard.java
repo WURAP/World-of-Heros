@@ -11,7 +11,7 @@ import java.util.List;
 public class PuzzleBoard extends JPanel {
 
     private static final long serialVersionUID = -9139866544143252957L;
-    private final static int DELAY = 3500;
+    private final static int DELAY = 500;
     private final static int TILE_SIZE = 30;
     private final static String HINWEIS = "Hinweis ";
 
