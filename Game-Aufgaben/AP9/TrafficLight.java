@@ -176,8 +176,8 @@ public static void main(String[] args){
     
     String delimiter= ";";
     String filePath = "/Users/GanglionGut.csv";
-    String filePath2 = "/Users/GB.csv";
-    String filePath1 = "/Users/GanglionSGut1234.csv";
+    String filePath2 = "/Users/GanglionBad.csv";
+    String filePath1 = "/Users/GanglionSGut.csv";
     
     double[] TA= tl.convert(filePath, delimiter , 1);
     double[] TA1= tl.convert(filePath1, delimiter , 1);
