@@ -15,7 +15,6 @@ public class Buchstabenspiel extends JApplet
         WordClue clue = new WordClue();
         wordsClues = clue.readFromInputFile(WORDS_CLUES_FILE);
 
-        // Create the GUI on the event-dispatching thread.
         try
         {
             SwingUtilities.invokeAndWait (new Runnable ()
@@ -34,7 +33,7 @@ public class Buchstabenspiel extends JApplet
 
     private void createGUI ()
     {
-        // This applet uses a glass pane to prevent puzzle tiles from being
+        // This applet uses a transparent JPanel to prevent puzzle tiles from being
         // selected between correctly unscrambling a word and the applet
         // presenting the next scrambled word.
         JPanel pnlGlass = new JPanel ();
@@ -45,7 +44,7 @@ public class Buchstabenspiel extends JApplet
 
         // Create the GUI components. A clue that associates with the current
         // scrambled word is presented via a label. The scrambled word is
-        // presented via a puzzle board as a horizontal sequence of tiles (one
+        // presented via the puzzle board as a horizontal sequence of tiles (one
         // tile per word character).
         JLabel lblClue = new JLabel ("");
         lblClue.setForeground (Color.white);
@@ -80,7 +79,7 @@ public class Buchstabenspiel extends JApplet
         setContentPane (vBox);
         setSize(500, 150);
 
-        // Give the GUI a dark green background.
+        // Background colour.
         setBackground (new Color (0, 128, 0));
     }
 
