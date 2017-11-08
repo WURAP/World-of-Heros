@@ -19,17 +19,20 @@ public class Qeeg extends ApplicationFrame {
 	public Qeeg() {
         
 		super("Qeeg");
-        XYDataset datenset = datenErzeugung();
-        JFreeChart chart  = createChart(datenset);
-        ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setSize(2000,1000);
-        setContentPane(chartPanel);
+        XYDataset datenset = datenErzeugung(); //rufe die Methode datenErzeugung() auf. Die Variable datenset zeigt auf die gesamten Daten
+        JFreeChart chart  = createChart(datenset); //rufe die Methode createChart() auf und übergebe ihr die Daten um ein Diagramm zu erzeugen
+        ChartPanel chartPanel = new ChartPanel(chart); //stelle das Diagramm in einem Fenster dar
+        chartPanel.setSize(2000,1000); //stellt die Größe ein. 2000 Pixel breit/1000 Pixel hoch
+        setContentPane(chartPanel); //zeigt das Diagramm im Fenster an
     }
     
+	//Methode, um die Daten der 16 Kanälen zu erzeugen und zurückzugeben
 	public XYSeriesCollection datenErzeugung() {
     	
+		//erzeugt eine Kollektionsobjekt von Daten (beinhaltet alle 16 Kanäle)
 		XYSeriesCollection datenset = new XYSeriesCollection();
-    	 	
+    	
+		//erzeugt 16 Objekte, die jeweils einen Kanal repräsentieren
     	XYSeries Kanal1 = new XYSeries("Kanal 1"); 
         XYSeries Kanal2 = new XYSeries("Kanal 2");
         XYSeries Kanal3 = new XYSeries("Kanal 3"); 
@@ -46,29 +49,39 @@ public class Qeeg extends ApplicationFrame {
         XYSeries Kanal14 = new XYSeries("Kanal 14");
         XYSeries Kanal15 = new XYSeries("Kanal 15"); 
         XYSeries Kanal16 = new XYSeries("Kanal 16");
-         
+        
+        
+        
         try (BufferedReader lese = new BufferedReader(new FileReader("/home/h1350859/SR/Documents/Kanal1.csv"))) {          
             
+        	
         	SimpleDateFormat formatiere = new SimpleDateFormat("hh:mm:ss.SSS"); 
             String s = null;
             
+            //setze den Zeiger "s" auf die nächste Linie. Solange "s" auf etwas zeigt, befolge die while-Schleife
+            //Erstelle ein Array von String Objekten und teile es dort, wo ein Beistrich vorkommt
+            //Formatiere das erste Objekt in der Zeile nach den zuvor definirten Formatierregeln
+            //Entferne mittels trim() Leerzeichen vor und nach dem String
+            //Ermittle mittels valueOf() den Wert des Stringobjekts und mach daraus ein Integer Objekt
+            //Füge dem ersten Kanal die x- und y-Werte bei.
             while ((s = lese.readLine()) != null) {
                 String[] a = s.split(",");
                 Date d = formatiere.parse(a[0]);
                 int v = Integer.valueOf(a[1].trim());
                 Kanal1.add(d.getTime(), v);
             }
-        }
+        }	//fängt zwei Mögliche Exceptions, die auftreten können
         	catch (IOException | ParseException e) {
-        		e.printStackTrace();
+        		e.printStackTrace(); //zeigt an, in welcher Zeile ein Fehler aufgetreten ist
         } 
         
         try(BufferedReader lese = new BufferedReader(new FileReader("/home/h1350859/SR/Documents/Kanal2.csv"))) {
      
             SimpleDateFormat formatiere = new SimpleDateFormat("hh:mm:ss.SSS"); 
             String s = null;
+            
             while ((s = lese.readLine()) != null) {
-                String[] a = s.split(",");
+                String[] a = s.split(",");   
                 Date d = formatiere.parse(a[0]);
                 int v = Integer.valueOf(a[1].trim());
                 Kanal2.add(d.getTime(), v);
@@ -301,7 +314,8 @@ public class Qeeg extends ApplicationFrame {
         	catch (IOException | ParseException e) {
         		e.printStackTrace();
         }     
-   
+        
+        //füge die einzelnen Kanäle dem Kollektionsobjekt bei. 
         datenset.addSeries(Kanal1);
         datenset.addSeries(Kanal2);
         datenset.addSeries(Kanal3);
@@ -319,9 +333,11 @@ public class Qeeg extends ApplicationFrame {
         datenset.addSeries(Kanal15);
         datenset.addSeries(Kanal16);
         
+        //gib das Kollektionsobjekt (16 Kanäle) zurück
         return datenset;
     } 
     
+		//erzeuge, formatiere und gib das Diagramm zurück
     public JFreeChart createChart(XYDataset daten) {
         JFreeChart qeeg = ChartFactory.createTimeSeriesChart("QEEG Zeitreihe","Zeit", "Mikrovolt", daten);
         return qeeg;
@@ -329,8 +345,8 @@ public class Qeeg extends ApplicationFrame {
     
     public static void main(String[] args) {
     	Qeeg obj = new Qeeg();
-        obj.pack(); 
-        RefineryUtilities.centerFrameOnScreen(obj); 
-        obj.setVisible(true); 
+        obj.pack(); //stelle das Fenster in die angegebene Größe
+        RefineryUtilities.centerFrameOnScreen(obj); //stell das Fenster in die Mitte des Bildschirms
+        obj.setVisible(true); //lass das Fenster anzeigen
     }
 }
