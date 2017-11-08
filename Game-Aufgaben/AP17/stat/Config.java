@@ -12,6 +12,8 @@ public class Config
 	//DEFINE LINE SHAPE
 	public final static boolean showMarker = false;
 	public final static boolean smoothLine = true;
+	public final static boolean lineAverage = true;
+
 	
 	//GRAPH DIMENSIONS
 	public final static int yMin = 0;
@@ -27,6 +29,7 @@ public class Config
 	 * PrimeFaces divides the maximum x-value through 6 to get data ticks along the x-axis.
 	 * This method rounds up to get better looking integers at the cost of unused space.
 	 */
+	
 	private static int roundTicks(int i) 
 	{ 
 		if(i%6 != 0) 

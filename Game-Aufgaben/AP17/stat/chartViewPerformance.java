@@ -56,8 +56,8 @@ public class chartViewPerformance implements Serializable
     	//PERFORMANCE OVER TIME
         LineChartSeries performanceSeries = new LineChartSeries();
 	        performanceSeries.setLabel("Performance");
-	        performanceSeries.setShowMarker(false);
-	    
+	        performanceSeries.setShowMarker(true);
+	        performanceSeries.setShowLine(Config.lineAverage);
 	        
 	    //FOR TESTING PURPOSES ONLY    
         Player currentPlayer = new Player();										//Creates new Player and assigns random values
