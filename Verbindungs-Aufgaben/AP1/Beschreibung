@@ -9,6 +9,6 @@ Erfolge:
 4.Die Daten werden theoretisch in eine csv datei gespeichert
 
 Probleme:
-1.Kompatibilitäts Probleme mit verschiedene Betriebsystemen
+1.Kompatibilitätsprobleme mit verschiedene Betriebsystemen
 2.Daten können wir nicht erhalten
 3.Daten sind in ASCI codiert und man muss sie in volt decodieren
