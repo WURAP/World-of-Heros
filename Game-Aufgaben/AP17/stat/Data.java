@@ -11,8 +11,8 @@ public class Data
 	private static boolean random = Config.randomValues;
 	private static int randomArrayLength = Config.randomArrayLength;
 		
-	private static Point[] preset = generateRandom(randomArrayLength);
-	private static Point[] actual = generateRandom(randomArrayLength);
+	private static Point[] preset = generateRandom(randomArrayLength); //TODO insert array for preset flight path
+	private static Point[] actual = generateRandom(randomArrayLength); //TODO insert array for actual flight path
 	
 
 	
@@ -90,7 +90,7 @@ public class Data
     }
 
        
-    	//	Creates a random Array of specified length for testing purposes
+    //	Creates a random Array of specified length for testing purposes
     public static Point[] generateRandom(int arrayLength) 
     {
     	int lastNumber = (int) (Config.yMax*0.5);
@@ -99,7 +99,7 @@ public class Data
 			{
 			    Point temp = new Point();
 				temp.x = i;
-				if (Math.random() < 0.5&&lastNumber<(Config.yMax*0.75)) 
+				if (Math.random() < 0.5&&lastNumber<(Config.yMax*0.75)) 	//Smoothing while staying in bounds
 					{
 					temp.y = (int) (lastNumber*(((Config.yMax*Config.randomValueSmoothing)+Math.random())/(Config.yMax*Config.randomValueSmoothing)));
 					}
